@@ -109,6 +109,10 @@ section {
   z-index: 1;
 }
 
+.main-list img:hover {
+  cursor: grab;
+}
+
 .main-container {
   width: 100%;
   height: 100%;
@@ -270,7 +274,7 @@ section {
   list-style: none;
   margin: 0 0 0 0;
   padding: 1rem 0;
-  overflow: hidden;
+  overflow: none;
 }
 
 .class-card {
