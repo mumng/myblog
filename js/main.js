@@ -28,20 +28,58 @@ function transformPrev(event) {
 
   if (ultag.clientWidth < liList.length * 260 + activeLi) {
     activeLi = activeLi - 260;
+    ultag.style.transition = "transform 1s";
+    ultag.style.transform = "translateX(" + String(activeLi) + "px)";
+    ultag.setAttribute("data-position", activeLi);
   }
 
-  ultag.style.transition = "transform 1s";
-  ultag.style.transform = "translateX(" + String(activeLi) + "px)";
-  ultag.setAttribute("data-position", activeLi);
+  if (activeLi < 0) {
+    slideNext.classList.add("show");
+    slideNext.addEventListener("click", transformNext);
+  } else {
+    slideNext.classList.remove("show");
+  }
+
+  if(ultag.clientWidth > liList.length * 260 + activeLi){
+    slidePrev.classList.remove("show");
+  }else {
+    slidePrev.classList.add("show");
+  }
 }
 
+function transformNext(event) {
+  const slideNext = event.target;
+  const slidePrev = slideNext.previousElementSibling;
+  const ultag = slideNext.parentElement.parentElement.nextElementSibling;
+  const liList = ultag.getElementsByTagName("li");
+  let activeLi = Number(ultag.getAttribute("data-position"));
+
+  if(activeLi < 0) {
+    activeLi = activeLi + 260;
+    ultag.style.transition = "transform 1s";
+    ultag.style.transform = "translateX(" + String(activeLi) + "px)";
+    ultag.setAttribute("data-position", activeLi);
+  }
+
+  if (activeLi < 0) {
+    slideNext.classList.add("show");
+    slideNext.addEventListener("click", transformNext);
+  } else {
+    slideNext.classList.remove("show");
+  }
+
+  if(ultag.clientWidth > liList.length * 260 + activeLi){
+    slidePrev.classList.remove("show");
+  }else {
+    slidePrev.classList.add("show");
+  }
+}
 const slidePrevList = document.getElementsByClassName("slide-prev");
 
 for (let i = 0; i < slidePrevList.length; i++) {
   // ul 태그 선택
   let ElementList =
     slidePrevList[i].parentElement.parentElement.nextElementSibling;
-  const slideNext = slidePrevList[i].nextElementSibling;
   let liList = ElementList.getElementsByTagName("li");
   const activeLi = ElementList.getAttribute("data-position");
   if (ElementList.clientWidth < liList.length * 260 + Number(activeLi)) {
@@ -50,9 +88,5 @@ for (let i = 0; i < slidePrevList.length; i++) {
   } else {
     slidePrevList[i].classList.remove("show");
   }
-  if (Number(activeLi) < 0) {
-    slideNext.classList.add("show");
-  } else {
-    slideNext.classList.remove("show");
-  }
+
 }
