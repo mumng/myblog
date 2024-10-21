@@ -206,13 +206,63 @@ section {
 .slide-prev {
   font-size: 2rem;
   cursor: pointer;
-  color: #6a5fa0;
+  color: #5e47d3;
+  visibility: visible;
+  opacity: 0.3;
+  transition-property: background-color, opacity, visibility;
+  transition-duration: 0.3s, 0.5s, 0.5s;
+}
+
+.slide-prev.show {
+  opacity: 1;
+  color: #5e47d3;
+  visibility: visible;
 }
 
 .slide-next {
   font-size: 2rem;
   cursor: pointer;
-  color: #cfd8dc;
+  color: #5e47d3;
+  visibility: visible;
+  opacity: 0.3;
+  transition-property: background-color, opacity, visibility;
+  transition-duration: 0.3s, 0.5s, 0.5s;
+}
+
+.slide-next.show {
+  opacity: 1;
+  visibility: visible;
+  color: #5e47d3;
+}
+
+#backtotop {
+  background-color: rgb(47, 48, 89);
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 20px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition-property: background-color, opacity, visibility;
+  transition-duration: 0.3s, 0.5s, 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+}
+
+#backtotop::after {
+  content: "\f077";
+  font-family: Fontawesome;
+  font-size: 1.5rem;
+  line-height: 40px;
+  color: #fff;
+}
+
+#backtotop.show {
+  opacity: 1;
+  visibility: visible;
+  background-color: rgb(47, 48, 89);
 }
 
 .class-list {
@@ -240,7 +290,6 @@ section {
 .class-image {
   border-radius: 8px 8px 0 0;
   max-width: 100%;
-  
 }
 
 .class-container {
